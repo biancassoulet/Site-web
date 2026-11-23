@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vidéo</title>
+<style>
+  :root {
+    /* Couleur du fond */
+    --couleur-fond: #ED8E3B;
+    /* TAILLE DE LA TÉLÉ : la seule valeur à changer pour agrandir ou réduire */
+    --largeur: 1000px;
+  }
+
+  body {
+    margin: 0;
+    padding-top: 70px;          /* espace au-dessus de la télé */
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: hidden;
+
+    /* Fond : image + réglages */
+    background-color: var(--couleur-fond);
+    background-image: url("Tele_fond_bonhommes.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  /* Conteneur : fixe la taille de la télé (image carrée) */
+  .tele {
+    position: relative;
+    width: var(--largeur);
+    aspect-ratio: 1 / 1;
+    /* Retire le vide transparent de l'image en haut et en bas */
+    margin: calc(var(--largeur) * -0.21) 0 calc(var(--largeur) * -0.215) 0;
+  }
+
+  /* Image de la télé : devant */
+  .tele img {
+    display: block;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* Vidéo : derrière, placée en % sur l'écran */
+  .tele video {
+    position: absolute;
+    z-index: 1;
+    top: 26.2%;
+    left: 15%;
+    width: 54.5%;
+    height: 43.8%;
+    object-fit: cover;
+    background: black;
+  }
+</style>
+</head>
+<body>
+<div class="tele">
+  <video src="Video_Carrotte.mp4" controls></video>
+  <img src="télé_fun.png" alt="Télévision">
+</div>
+
+</body>
+</html>
