@@ -1,0 +1,185 @@
+/* ---------- 1. Base : on remet tout à zéro ---------- */
+* {
+  box-sizing: border-box;   /* la taille inclut les bordures et marges internes */
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- 2. La page = 3 lignes qui tiennent dans l'écran ---------- */
+body {
+  height: 100vh;            /* exactement la hauteur de l'écran */
+  height: 100dvh;           /* idem, mais mieux géré sur téléphone */
+  display: grid;
+  grid-template-rows: auto 1fr auto;   /* titres / zone centrale / palette */
+  background: #FCFA92;
+  font-family: Arial, sans-serif;      /* à remplacer par ta police plus tard */
+  overflow: hidden;                    /* pas de scroll */
+}
+
+/* ---------- 3. Les titres ---------- */
+header {
+  position: relative;
+  text-align: center;
+  padding: 10px 20px;
+}
+
+@font-face {
+  font-family: "Aktura";
+  src: url("Aktura-Regular.woff2");
+}
+@font-face {
+  font-family: "Striper";
+  src: url("Striper-Regular.woff2");
+}
+  h1 {
+    font-family: "Aktura", Aktura, sans-serif;
+    color: #BF250A; font-size: 70vw;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    margin-top: 20px;
+  }
+  h2 {
+    font-family: "Striper", Striper, sans-serif;
+    text-align: center;
+    font-size: 14vw;
+  }
+h1 {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);   /* s'adapte à la largeur de l'écran */
+}
+
+h2 {
+  font-size: clamp(0.8rem, 1.6vw, 1.1rem);
+  font-weight: normal;
+}
+
+.retour {
+  position: absolute;
+  left: 15px;
+  top: 12px;
+  color: black;
+}
+
+/* ---------- 4. Zone centrale : miniatures | toile ---------- */
+main {
+  display: grid;
+  grid-template-columns: 340px 1fr;   /* colonne fixe + le reste */
+  gap: 15px;
+  padding: 0 15px;
+  min-height: 0;                      /* IMPORTANT : évite que le contenu déborde */
+}
+
+/* Colonne des miniatures */
+#personnages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 10px;
+  min-height: 0;
+}
+
+#personnages button {
+  flex: 1;                 /* les 3 boutons se partagent la hauteur */
+  min-height: 0;
+  background-color: #65E683;
+  border: 4px solid red;
+  border-radius: 100px;
+  padding: 1px;
+  cursor: pointer;
+}
+
+#personnages button:hover {
+  transform: scale(1.05);
+}
+
+#personnages button.selectionnee {
+  border-color: #e63946;
+  background: #ffe9ec;
+}
+
+#personnages img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;     /* l'image garde ses proportions */
+}
+
+/* ---------- 5. La toile ---------- */
+#toile {
+  background: black;
+  border: 10px solid green;
+  border-radius: 400px;
+  min-height: 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Le SVG injecté par le JavaScript remplit la toile sans se déformer */
+#toile svg {
+  width: 100%;
+  height: 100%;
+}
+
+#toile .message {
+  color: #777;
+  font-size: 1.1rem;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Petit effet quand on survole une zone coloriable */
+.zone:hover {
+  filter: brightness(0.93);
+}
+
+/* ---------- 6. La palette (étoiles) ---------- */
+#palette {
+  justify-self: center;        /* centre le rectangle et le rétrécit à la taille de son contenu */
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 28px;          /* l'espace autour des étoiles */
+  margin-bottom: 14px;         /* décolle le rectangle du bas de l'écran */
+  background: white;
+  border: 3px solid black;
+}
+
+.couleur {
+  width: 52px;
+  height: 52px;
+  border: 3px solid white;
+  cursor: pointer;
+  /* découpe le carré en étoile à 5 branches */
+  clip-path: border-radius: 50%;
+  transition: transform 0.15s;
+}
+
+.couleur:hover {
+  transform: scale(1.15);
+}
+
+/* La couleur choisie est plus grosse */
+.couleur.selectionnee {
+  transform: scale(1.4);
+}
+
+#matrix {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;      /* derrière tout le reste */
+}
+
+/* Plan B si tu préfères des ronds : remplace le clip-path ci-dessus par
+   border-radius: 50%; */
+
+/* ---------- 7. Petits écrans ---------- */
+@media (max-width: 600px) {
+  main { grid-template-columns: 80px 1fr; gap: 8px; padding: 0 8px; }
+  .couleur { width: 40px; height: 40px; }
+  #palette { gap: 12px; }
+}

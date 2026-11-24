@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Réanimes nous !</title>
+  <link rel="stylesheet" href="coloriage.css">
+</head>
+<body>
+<canvas id="matrix"></canvas>
+
+  <!-- LIGNE 1 : les titres -->
+  <header>
+    <h1>Réanimes nous !!</h1>
+    <h2>Les trois zigotos broient du noir, cliques sur eux pour les sauver en leur redonnant de la couleur !</h2>
+  </header>
+
+  <!-- LIGNE 2 : miniatures à gauche, toile au centre -->
+  <main>
+    <nav id="personnages">
+      <!-- data-dessin = le nom du fichier SVG (sans .svg), lu par le JavaScript -->
+      <button data-dessin="coloriage-1" aria-label="Biancaniveau">
+        <img src="coloriage-1.svg" alt="Le bouffon">
+      </button>
+      <button data-dessin="coloriage-2" aria-label="Le personnage grimaçant">
+        <img src="coloriage-2.svg" alt="Biancassée">
+      </button>
+      <button data-dessin="coloriage-3" aria-label="Le personnage aux cheveux bouclés">
+        <img src="coloriage-3.svg" alt="Biancakawai">
+      </button>
+    </nav>
+
+    <!-- Le dessin choisi sera injecté ici par le JavaScript -->
+    <section id="toile">
+      <p class="message">Choisis un personnage à gauche pour commencer !</p>
+    </section>
+  </main>
+
+  <!-- LIGNE 3 : la palette de 6 couleurs (étoiles) -->
+  <footer id="palette">
+    <!-- data-couleur = la couleur, lue par le JavaScript.
+         La classe "selectionnee" est déjà sur la première : c'est la couleur de départ. -->
+    <button class="couleur selectionnee" data-couleur="#e63946" style="background:#e63946" aria-label="Rouge"></button>
+    <button class="couleur" data-couleur="#EDA034" style="background:#EDA034" aria-label="Orange"></button>
+    <button class="couleur" data-couleur="#FFED6E" style="background:#FFED6E" aria-label="Jaune"></button>
+    <button class="couleur" data-couleur="#34ED87" style="background:#34ED87" aria-label="Vert"></button>
+    <button class="couleur" data-couleur="#347BED" style="background:#347BED" aria-label="Bleu"></button>
+    <button class="couleur" data-couleur="#A93CE8" style="background:#A93CE8" aria-label="Violet"></button>
+  </footer>
+ <script src="dessins.js"></script>
+  <script src="coloriage.js"></script>
+<script src="fond_coloriages.js"></script>
+</body>
+</html>
