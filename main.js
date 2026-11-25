@@ -21,10 +21,10 @@ for (let i = 0; i < columns; i++) {
 
 function draw() {
     // Rectangle violet très transparent : crée l'effet de traînée
-    ctx.fillStyle = "rgba(28, 62, 166, 0.1)";
+    ctx.fillStyle = "rgba(255, 246, 176, 0.1)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#36B9E8";
+    ctx.fillStyle = "#FFD682";
     ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
